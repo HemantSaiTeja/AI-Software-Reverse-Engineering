@@ -1,0 +1,97 @@
+[
+    {
+        "file": "sample_project\\main.py",
+        "imports": [
+            "from payment import PaymentService"
+        ],
+        "classes": [],
+        "functions": [
+            "main"
+        ],
+        "methods": [],
+        "calls": [
+            {
+                "caller": "main",
+                "callee": "PaymentService"
+            },
+            {
+                "caller": "main",
+                "callee": "payment_service.make_payment"
+            },
+            {
+                "caller": null,
+                "callee": "main"
+            }
+        ],
+        "dependencies": [
+            "sample_project\\payment.py"
+        ]
+    },
+    {
+        "file": "sample_project\\payment.py",
+        "imports": [
+            "from user import UserService"
+        ],
+        "classes": [
+            "PaymentService"
+        ],
+        "functions": [
+            "make_payment"
+        ],
+        "methods": [
+            {
+                "class": "PaymentService",
+                "method": "make_payment"
+            }
+        ],
+        "calls": [
+            {
+                "caller": "make_payment",
+                "callee": "UserService"
+            },
+            {
+                "caller": "make_payment",
+                "callee": "user_service.validate_user"
+            },
+            {
+                "caller": "make_payment",
+                "callee": "print"
+            }
+        ],
+        "dependencies": [
+            "sample_project\\user.py"
+        ]
+    },
+    {
+        "file": "sample_project\\user.py",
+        "imports": [],
+        "classes": [
+            "UserService"
+        ],
+        "functions": [
+            "get_user",
+            "validate_user"
+        ],
+        "methods": [
+            {
+                "class": "UserService",
+                "method": "get_user"
+            },
+            {
+                "class": "UserService",
+                "method": "validate_user"
+            }
+        ],
+        "calls": [
+            {
+                "caller": "get_user",
+                "callee": "print"
+            },
+            {
+                "caller": "validate_user",
+                "callee": "print"
+            }
+        ],
+        "dependencies": []
+    }
+]
