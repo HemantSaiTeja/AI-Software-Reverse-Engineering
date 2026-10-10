@@ -1,4 +1,3 @@
-from vector_search import search_code
 from neo4j import GraphDatabase
 
 
@@ -9,7 +8,7 @@ from neo4j import GraphDatabase
 URI = "neo4j://127.0.0.1:7687"
 USERNAME = "neo4j"
 
-# Enter your Neo4j password here
+# Your local Neo4j password
 PASSWORD = "12345678"
 
 
@@ -55,54 +54,3 @@ def get_graph_context(function_name):
             "calls": record["calls"],
             "callers": record["callers"]
         }
-
-
-# =============================
-# Ask User Question
-# =============================
-
-question = input("\nAsk a question about the code: ")
-
-
-# =============================
-# Semantic Search
-# =============================
-
-chunk, similarity = search_code(question)
-
-
-print("\n==============================")
-print("QUESTION:")
-print(question)
-
-
-print("\nSEMANTIC RESULT:")
-print("File:", chunk["file"])
-print("Name:", chunk["name"])
-print("Type:", chunk["type"])
-print("Similarity:", similarity)
-
-
-print("\nCODE:")
-print(chunk["content"])
-
-
-# =============================
-# Graph Search
-# =============================
-
-graph_result = get_graph_context(chunk["name"])
-
-
-print("\nGRAPH RESULT:")
-
-print("Calls:", graph_result["calls"])
-
-print("Called by:", graph_result["callers"])
-
-
-# =============================
-# Close Neo4j
-# =============================
-
-driver.close()
